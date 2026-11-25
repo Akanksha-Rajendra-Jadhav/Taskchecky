@@ -1,0 +1,11 @@
+const r = require('express').Router();
+const c = require('../controllers/notificationController');
+const { protect } = require('../middleware/auth');
+r.post('/public/:token/:action', c.publicAction);
+r.use(protect);
+r.get('/', c.list);
+r.post('/:id/action', c.act);
+r.get('/push/key', c.key);
+r.post('/push/subscribe', c.subscribe);
+r.post('/push/unsubscribe', c.unsubscribe);
+module.exports = r;
